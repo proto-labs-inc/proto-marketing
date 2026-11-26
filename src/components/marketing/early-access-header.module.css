@@ -1,0 +1,112 @@
+.button {
+  --button-accent: var(--early-access-pink, var(--primary));
+  --button-hover-text: #fff;
+  --button-hover-background: var(--button-accent);
+  display: flex;
+  width: fit-content;
+  height: var(--marketing-header-control-height);
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1rem;
+  border: 1px solid var(--button-accent);
+  border-radius: 0.875rem;
+  background-color: color-mix(in srgb, var(--button-accent) 12%, var(--background));
+  color: var(--button-accent);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+:global(.marketing[data-theme="light"]) .button,
+:global(.marketing[data-theme="dark"]) .button {
+  border-color: transparent;
+}
+
+.headerButton {
+  margin-inline: auto;
+  margin-bottom: 1.15rem;
+}
+
+@media (max-width: 639px) {
+  .headerButton {
+    margin-bottom: 2rem;
+  }
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+:global(.marketing[data-theme="dark"]) .headerButton {
+  --button-accent: var(--early-access-gold);
+  --button-hover-text: var(--background);
+}
+
+:global(.marketing[data-theme="matrix"]) .button {
+  --button-accent: var(--primary);
+  --button-hover-text: var(--primary-foreground);
+  border: 1px solid var(--primary);
+}
+
+:global(.marketing[data-theme="p5js"]) .button {
+  --button-accent: var(--primary);
+  background-color: var(--card);
+  border: 1px solid var(--primary);
+}
+
+:global(.marketing[data-theme="macintosh"]) .button {
+  --button-accent: var(--foreground);
+  --button-hover-text: var(--background);
+  border: 2px solid var(--foreground);
+  border-radius: 2px;
+  background-color: var(--background);
+  box-shadow: 3px 3px 0 var(--foreground);
+  font-family: var(--font-chicago), monospace;
+  font-weight: 400;
+}
+
+:global(.marketing[data-theme="macintosh"]) .button:active {
+  box-shadow: 1px 1px 0 var(--foreground);
+  transform: translate(2px, 2px);
+}
+
+.button:not(:disabled):hover {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-text);
+}
+
+.arrow {
+  width: 1.0625rem;
+  height: 1.0625rem;
+  flex: none;
+  transition: transform 150ms ease;
+}
+
+.button:not(:disabled):hover .arrow {
+  transform: translateX(3px);
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .arrow {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .headerButton {
+    margin-bottom: 2rem;
+  }
+}

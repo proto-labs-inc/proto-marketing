@@ -1,0 +1,20 @@
+.page {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 48px 24px;
+  background: #fff;
+  color: #000;
+}
+
+.message {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.domain {
+  color: #ed327b;
+}

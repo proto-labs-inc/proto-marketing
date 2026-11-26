@@ -1,0 +1,142 @@
+.memo-page[data-theme="matrix"] .theme-picker-home {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, var(--background));
+}
+
+.memo-page[data-theme="macintosh"] .theme-picker-home {
+  border-color: #000;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px #000, 2px 2px 0 #000;
+}
+
+.memo-email-gate {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.memo-transition-scene {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.memo-transition-gate {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+}
+
+.memo-transition-memo {
+  position: relative;
+  z-index: 1;
+}
+
+.memo-transition-gate .memo-email-gate {
+  min-height: 100svh;
+}
+
+.memo-email-form {
+  position: absolute;
+  z-index: 20;
+  top: 38%;
+  left: 50%;
+  width: min(420px, calc(100% - 32px));
+  padding: clamp(1.25rem, 5vw, 1.75rem);
+  border: 1px solid transparent;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
+.memo-email-intro {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  color: var(--foreground);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.memo-email-row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.memo-email-input {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  height: 2.875rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--input);
+  border-radius: 0.875rem;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .memo-email-input {
+    font-size: 1.125rem;
+  }
+}
+
+.memo-email-input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.memo-email-input:focus {
+  border-color: color-mix(in srgb, var(--foreground) 35%, var(--input));
+  outline: none;
+}
+
+.memo-email-submit {
+  --button-accent: var(--early-access-accent);
+  width: 2.875rem;
+  height: 2.875rem;
+  flex: none;
+  justify-content: center;
+  padding: 0;
+}
+
+.memo-email-submit svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.memo-page[data-theme="dark"] .memo-email-submit {
+  --button-accent: var(--early-access-note-gold);
+  --button-hover-text: var(--background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memo-email-input { transition: none; }
+}
+
+.memo-email-status {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.memo-page[data-theme="macintosh"] .memo-email-input {
+  border-radius: 0;
+}
+
+.memo-page[data-theme="macintosh"] .memo-announcement-video video,
+.memo-page[data-theme="macintosh"] .memo-announcement-video img {
+  filter: grayscale(1);
+}
+
+.memo-page[data-theme="matrix"] .memo-announcement-video :is(video, img, button) {
+  filter: url("#memo-video-terminal");
+}
+
+.memo-page[data-theme="matrix"] .memo-announcement-video > div {
+  background: var(--primary);
+}

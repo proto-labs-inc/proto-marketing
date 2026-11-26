@@ -1,0 +1,23 @@
+.demoLink {
+  --demo-accent: var(--demo-pink);
+  color: var(--demo-accent);
+  -webkit-text-fill-color: currentColor;
+  text-decoration-color: currentColor;
+}
+
+:global(.marketing[data-theme="dark"]) .demoLink {
+  --demo-accent: var(--demo-gold);
+}
+
+:global(.marketing[data-theme="matrix"]) .demoLink,
+:global(.marketing[data-theme="p5js"]) .demoLink {
+  --demo-accent: var(--primary);
+}
+
+:global(.marketing[data-theme="macintosh"]) .demoLink {
+  --demo-accent: var(--foreground);
+}
+
+@media (max-width: 639px) {
+  .desktopEarlyAccess { display: none; }
+}

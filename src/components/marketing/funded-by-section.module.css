@@ -1,0 +1,363 @@
+.root {
+  width: min(100%, 620px);
+  margin: 12px auto 0;
+  color: var(--foreground);
+}
+
+.title {
+  width: 100%;
+  margin: 0;
+  color: var(--foreground);
+  opacity: 0;
+  text-align: center;
+  transform: translateY(18px);
+}
+
+.titleText {
+  color: color-mix(in srgb, var(--foreground) 75%, transparent);
+}
+
+.mobileTitleBreak {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .mobileTitleBreak {
+    display: inline;
+  }
+}
+
+.ycMark {
+  display: inline-flex;
+  width: 0.92em;
+  height: 0.92em;
+  filter: var(--backer-image-filter);
+  vertical-align: -0.08em;
+}
+
+.ycMark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.field {
+  position: relative;
+  width: min(100%, 370px);
+  height: 104px;
+  margin: 24px auto 0;
+}
+
+.instruction {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.person {
+  --tilt: 0deg;
+  position: absolute;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  opacity: 0;
+  touch-action: none;
+  user-select: none;
+  transform: translate3d(var(--drag-x), var(--drag-y), 0);
+}
+
+.person1 {
+  top: 31px;
+  left: 8px;
+}
+
+.person2 {
+  top: 7px;
+  left: 69px;
+}
+
+.person3 {
+  top: 35px;
+  left: 132px;
+}
+
+.person4 {
+  top: 4px;
+  left: 194px;
+}
+
+.person5 {
+  top: 29px;
+  left: 254px;
+}
+
+.person6 {
+  top: 8px;
+  right: 4px;
+}
+
+:global(.marketing[data-theme="macintosh"]) .person1,
+:global(.marketing[data-theme="macintosh"]) .person2,
+:global(.marketing[data-theme="macintosh"]) .person3,
+:global(.marketing[data-theme="macintosh"]) .person4,
+:global(.marketing[data-theme="macintosh"]) .person5,
+:global(.marketing[data-theme="macintosh"]) .person6 {
+  top: 18px;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: 3px solid var(--background);
+  border-radius: var(--backer-frame-radius);
+  background: var(--background);
+  box-shadow:
+    0 0 0 1px var(--foreground),
+    4px 5px 0 var(--backer-shadow-color);
+  transform: translateY(18px) rotate(var(--tilt)) scale(0.92);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.person2 .frame,
+.person4 .frame,
+.person6 .frame {
+  width: 40px;
+  height: 40px;
+}
+
+.person3 .frame {
+  width: 48px;
+  height: 48px;
+}
+
+:global(.marketing[data-theme="macintosh"]) .frame {
+  width: 44px;
+  height: 44px;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: var(--backer-image-filter);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.profile {
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 11px);
+  left: 50%;
+  display: grid;
+  width: max-content;
+  min-width: 128px;
+  border: 1px solid var(--foreground);
+  background: var(--backer-profile-background);
+  box-shadow: var(--backer-profile-shadow);
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  transform: translate(-50%, 7px) rotate(-1deg);
+  transform-origin: bottom center;
+  transition:
+    opacity 120ms ease,
+    transform 170ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.profile::after {
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  background: var(--backer-profile-background);
+  content: "";
+  transform: translateY(-4px) rotate(45deg);
+}
+
+.profile strong {
+  padding: 7px 10px 2px;
+  font-size: 12px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+.profile small {
+  padding: 0 10px 7px;
+  color: var(--muted-foreground);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.profile > span {
+  display: none;
+}
+
+.entered .title {
+  animation: group-rise 560ms cubic-bezier(0.22, 1, 0.36, 1) 680ms both;
+}
+
+.entered .person {
+  animation: group-fade 420ms ease-out 680ms both;
+}
+
+.entered .frame {
+  animation: group-rise-frame 560ms cubic-bezier(0.22, 1, 0.36, 1) 680ms both;
+}
+
+.person:hover,
+.person:focus-visible,
+.person[data-dragging="true"] {
+  z-index: 30;
+  outline: none;
+}
+
+.person[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+.person:hover .frame,
+.person:focus-visible .frame,
+.person[data-dragging="true"] .frame {
+  box-shadow:
+    0 0 0 1px var(--foreground),
+    6px 7px 0 var(--backer-shadow-color);
+  transform: translateY(-5px) rotate(0) scale(1.07);
+}
+
+.person:focus-visible .frame {
+  box-shadow:
+    0 0 0 2px var(--foreground),
+    6px 7px 0 var(--backer-shadow-color);
+}
+
+.person:hover .profile,
+.person:focus-visible .profile {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(-1deg);
+}
+
+.person[data-dragging="true"] .profile {
+  opacity: 0;
+}
+
+@keyframes group-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes group-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes group-rise-frame {
+  to {
+    transform: translateY(0) rotate(var(--tilt)) scale(1);
+  }
+}
+
+@media (max-width: 639px) {
+  .root {
+    margin-top: 10px;
+  }
+
+  .field {
+    width: min(88%, 290px);
+    height: 100px;
+    margin-top: 20px;
+  }
+
+  .frame {
+    width: 38px;
+    height: 38px;
+    border-width: 2px;
+    box-shadow:
+      0 0 0 1px var(--foreground),
+      3px 4px 0 var(--backer-shadow-color);
+  }
+
+  .person2 .frame,
+  .person4 .frame,
+  .person6 .frame {
+    width: 34px;
+    height: 34px;
+  }
+
+  .person3 .frame {
+    width: 42px;
+    height: 42px;
+  }
+
+  :global(.marketing[data-theme="macintosh"]) .frame {
+    width: 38px;
+    height: 38px;
+  }
+
+  .person1 {
+    left: 0;
+  }
+
+  .person2 {
+    left: 21%;
+  }
+
+  .person3 {
+    left: 38%;
+  }
+
+  .person4 {
+    left: 55%;
+  }
+
+  .person5 {
+    left: 72%;
+  }
+
+  .person6 {
+    right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .person {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .frame {
+    transform: rotate(var(--tilt));
+    animation: none;
+    transition: none;
+  }
+
+  .profile {
+    transition: none;
+  }
+}

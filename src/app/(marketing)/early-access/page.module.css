@@ -1,0 +1,269 @@
+.page {
+  --early-access-action-color: var(--early-access-accent);
+  --early-access-content-center: 38%;
+  position: relative;
+  min-height: 100svh;
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), sans-serif;
+}
+:global(.marketing[data-theme="dark"]) .page { --early-access-action-color: var(--early-access-note-gold); }
+:global(.marketing[data-theme="matrix"]) .page,
+:global(.marketing[data-theme="p5js"]) .page { --early-access-action-color: var(--primary); }
+:global(.marketing[data-theme="macintosh"]) .page { --early-access-action-color: var(--foreground); }
+
+.content {
+  position: absolute;
+  top: var(--early-access-content-center);
+  inset-inline: 0;
+  translate: 0 -50%;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.backSpace {
+  display: none;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.lede {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.6;
+  pointer-events: auto;
+}
+.layoutBody:has(.successRow) .lede { display: none; }
+
+.formPanel { margin-top: 2rem; pointer-events: auto; }
+.form { display: grid; column-gap: 1.2rem; row-gap: 1.6rem; }
+.field { position: relative; display: grid; gap: 0.45rem; }
+.field:has([aria-expanded="true"]) { z-index: 1; }
+.field > [data-base-ui-portal] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+.field label {
+  width: fit-content;
+  justify-self: start;
+  background: var(--background);
+  box-shadow: 0 0 0 0.2rem var(--background);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.fieldHeading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem 0.5rem; }
+.fieldError { margin: 0 0 0 auto; background: var(--background); box-shadow: 0 0 0 0.2rem var(--background); color: #dc2626; font-size: 1rem; line-height: 1.35; text-align: right; }
+
+.field input {
+  width: 100%;
+  height: 2.4375rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--input);
+  border-radius: 0.875rem;
+  background: light-dark(var(--color-neutral-50), color-mix(in srgb, var(--muted) 40%, var(--background)));
+  color: var(--foreground);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.field input::placeholder { color: var(--muted-foreground); }
+
+.field input:focus {
+  border-color: color-mix(in srgb, var(--foreground) 20%, var(--input));
+  outline: none;
+}
+
+.selectTrigger {
+  width: 100%;
+  height: 2.4375rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--input);
+  border-radius: 0.875rem;
+  background: light-dark(var(--color-neutral-50), color-mix(in srgb, var(--muted) 40%, var(--background)));
+  color: var(--foreground);
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.selectTrigger:hover {
+  border-color: color-mix(in srgb, var(--foreground) 20%, var(--input));
+}
+
+.selectTrigger:focus {
+  border-color: color-mix(in srgb, var(--foreground) 20%, var(--input));
+  outline: none;
+  box-shadow: none;
+}
+
+.selectContent {
+  border: 1px solid var(--input);
+  border-radius: 0.875rem;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
+.selectItem {
+  min-height: 2.25rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.selectItem:hover,
+.selectItem:focus {
+  background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+  color: var(--foreground);
+}
+
+.formFooter { display: grid; grid-column: 1 / -1; gap: 0.5rem; }
+.formActions {
+  display: flex;
+  align-items: end;
+  gap: 1.2rem;
+}
+.finalField { flex: 1; min-width: 0; }
+.submitAction { margin-inline-start: auto; }
+:global(.marketing) .submitButton { --button-accent: var(--early-access-action-color); margin-inline-start: auto; font-size: 1rem; }
+:global(.marketing[data-theme="dark"]) .submitButton { --button-hover-text: var(--background); }
+:global(.marketing) .submitButton:disabled:not([data-submission-status="submitting"]) {
+  --button-accent: #888;
+  --button-hover-text: #888;
+  background-color: color-mix(in srgb, var(--background) 82%, #888 18%);
+  border-color: color-mix(in srgb, var(--background) 60%, #888 40%);
+  color: #888;
+  opacity: 1;
+  cursor: not-allowed;
+}
+:global(.marketing[data-theme="light"]) .submitButton:disabled:not([data-submission-status="submitting"]),
+:global(.marketing[data-theme="dark"]) .submitButton:disabled:not([data-submission-status="submitting"]) { border-color: transparent; }
+:global(.marketing[data-theme="p5js"]) .submitButton:disabled:not([data-submission-status="submitting"]) { --button-accent: var(--muted-foreground); }
+:global(.marketing[data-theme="matrix"]) .submitButton:disabled:not([data-submission-status="submitting"]) { --button-accent: var(--muted-foreground); }
+:global(.marketing[data-theme="p5js"]) .submitButton:disabled:not([data-submission-status="submitting"]),
+:global(.marketing[data-theme="matrix"]) .submitButton:disabled:not([data-submission-status="submitting"]) {
+  --button-hover-text: var(--button-accent);
+  background-color: color-mix(in srgb, var(--button-accent) 12%, var(--background));
+  border-color: var(--button-accent);
+  color: var(--button-accent);
+}
+:global(.marketing) .submitButton[data-submission-status="submitting"] {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-text);
+  opacity: 1;
+  cursor: wait;
+}
+.priorityNote {
+  margin: 0;
+  width: max-content;
+  max-width: 100%;
+  color: var(--early-access-action-color);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+:global(.marketing) .page .priorityNote::selection,
+:global(.marketing) .page .priorityNote *::selection {
+  background: color-mix(in srgb, var(--early-access-action-color) 22%, var(--background));
+  color: var(--early-access-action-color);
+}
+.priorityNote a { color: inherit; text-decoration: none; }
+.priorityFirstLine { display: inline-block; white-space: nowrap; }
+.priorityNote .priorityDm {
+  display: inline-block;
+  line-height: 1;
+  padding-bottom: 1px;
+  border-bottom: 2px solid currentColor;
+}
+.error { margin: 0; background: var(--background); box-shadow: 0 0 0 0.2rem var(--background); color: #dc2626; font-size: 1rem; text-align: right; }
+.page:has(.successRow) .backSpace { height: 0; margin-bottom: 0; }
+.layoutBody:has(.successRow) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.layoutBody:has(.successRow) .formPanel { width: 100%; margin-top: 0; }
+.successRow {
+  display: grid;
+  gap: 1.5rem;
+}
+.successRow .success { justify-self: center; max-width: 20rem; text-align: center; line-height: 1.5; }
+.successRow .priorityNote { justify-self: center; text-align: center; }
+.success p { width: fit-content; background: var(--background); box-shadow: 0 0 0 0.2rem var(--background); }
+.success p { margin: 0; color: var(--foreground); }
+.page a:focus-visible { outline: 2px solid var(--foreground); outline-offset: 4px; }
+
+:global(.marketing[data-theme="macintosh"]) .field input,
+:global(.marketing[data-theme="macintosh"]) .selectTrigger,
+:global(.marketing[data-theme="macintosh"]) .selectContent,
+:global(.marketing[data-theme="macintosh"]) .submitButton,
+:global(.marketing[data-theme="macintosh"]) .previewToggle,
+:global(.marketing[data-theme="macintosh"]) .previewOption,
+:global(.marketing[data-theme="macintosh"]) .previewPanel { border-radius: 0; }
+:global(.marketing[data-theme="macintosh"]) .field input::placeholder,
+:global(.marketing[data-theme="macintosh"]) .selectTrigger[data-placeholder] {
+  color: color-mix(in srgb, var(--foreground) 55%, var(--background));
+}
+
+@media (max-width: 767px) {
+  .page {
+    --early-access-header-inset: 0.75rem;
+    padding-top: calc(max(var(--early-access-header-inset), env(safe-area-inset-top)) + var(--marketing-header-control-height) + 1rem);
+    padding-bottom: max(3rem, env(safe-area-inset-bottom));
+  }
+
+  :global(.marketing[data-theme="macintosh"]) .page {
+    --early-access-header-inset: 1.75rem;
+  }
+
+  .content {
+    position: relative;
+    top: auto;
+    translate: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .page { font-size: 1rem; }
+  .backSpace { height: 1.6rem; margin-bottom: 0; }
+  .layoutBody:has(.successRow) { width: 100%; }
+  .priorityNote { width: 100%; }
+  .formPanel { margin-top: 1.6rem; }
+  .lede,
+  .field label,
+  .fieldError,
+  .priorityNote,
+  .error,
+  .previewToggle,
+  .previewOption,
+  .page .submitButton { font-size: 1rem; }
+}
+
+@media (min-width: 768px) {
+  .page .content { padding-inline: 1.5rem; }
+  .form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lede { line-height: 1.65; }
+}
+
+.page:has(.successRow) {
+  padding-block: 0;
+}
+
+.page:has(.successRow) .content {
+  position: absolute;
+  top: 40%;
+  translate: 0 -50%;
+}

@@ -1,0 +1,197 @@
+.shell {
+  --page-slide-duration: 720ms;
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 100svh;
+  overflow: clip visible;
+  background: var(--background);
+}
+
+.view {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  transition: transform var(--page-slide-duration) cubic-bezier(0.22, 1, 0.36, 1), visibility var(--page-slide-duration);
+  will-change: transform;
+}
+
+.homeView {
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.homeView:not(.homeAway) {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  overflow: visible;
+}
+
+.homeView a,
+.homeView button {
+  pointer-events: auto;
+}
+
+.homeView h1,
+.homeView h1 *,
+.homeView p,
+.homeView p * {
+  pointer-events: auto;
+  user-select: text;
+}
+
+.homeAway {
+  transform: translate3d(-100%, 0, 0);
+  visibility: hidden;
+}
+
+@media (max-width: 639px) {
+  .homeView {
+    --mobile-content-center: 40svh;
+    display: grid;
+    min-height: 100svh;
+    /* The first row's midpoint anchors the whole content group. */
+    grid-template-rows: minmax(min-content, calc(var(--mobile-content-center) * 2)) 1fr;
+  }
+
+  .homeContent {
+    grid-row: 1;
+    align-self: center;
+    padding-block: 5.5rem;
+  }
+
+  .shapeView {
+    transition: transform var(--page-slide-duration) cubic-bezier(0.22, 1, 0.36, 1), visibility var(--page-slide-duration);
+    will-change: transform;
+  }
+
+  .shapeAway {
+    transform: translate3d(-100%, 0, 0);
+    visibility: hidden;
+  }
+}
+
+.accessView {
+  pointer-events: none;
+  transform: translate3d(100%, 0, 0);
+  visibility: hidden;
+}
+
+.accessPresent {
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.back {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 320ms ease, visibility 320ms;
+}
+
+.backVisible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.homeContent {
+  position: relative;
+  padding-top: max(5.5rem, 8svh);
+  display: flex;
+  flex-direction: column;
+}
+
+:global(.marketing[data-theme="macintosh"]) .homeView h1 {
+  font-size: clamp(2.25rem, calc(14.375vw - 0.625rem), 3.625rem);
+}
+
+.accessPresent {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  overflow: visible;
+  transform: none;
+  will-change: auto;
+}
+
+/* Let the form slide independently of the home button. */
+.accessView.accessWithHomeBack {
+  transform: none;
+  will-change: auto;
+  transition: visibility var(--page-slide-duration);
+}
+
+.accessWithHomeBack [data-access-backdrop] {
+  transform: translate3d(100vw, 0, 0);
+  transition: transform var(--page-slide-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.accessWithHomeBack.accessPresent [data-access-backdrop] {
+  transform: translate3d(0, 0, 0);
+}
+
+.accessWithHomeBack .back {
+  transform: translate3d(8px, 0, 0);
+  transition: opacity 160ms ease-out, transform 160ms ease-out, visibility 160ms;
+}
+
+.accessWithHomeBack .backVisible {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (min-width: 640px) {
+  .homeView {
+    min-height: 100svh;
+  }
+
+  .homeContent {
+    position: absolute;
+    top: 14%;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  :global(.marketing[data-theme="macintosh"]) .homeView h1 {
+    font-size: 3.5625rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .homeContent { top: 12%; }
+
+  :global(.marketing[data-theme="macintosh"]) .homeView h1 {
+    font-size: 5.375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view { transition: none; }
+  .shapeView { transition: none; }
+  .back { transition: none; }
+  .accessView.accessWithHomeBack,
+  .accessWithHomeBack [data-access-backdrop],
+  .accessWithHomeBack .back { transition: none; }
+}
+
+.earlyAccessHeader {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+}
+
+@media (min-width: 640px) {
+  .earlyAccessHeader { display: none; }
+}
+
+:global(.marketing[data-theme="macintosh"]) .earlyAccessHeader {
+  top: 1.75rem;
+}
