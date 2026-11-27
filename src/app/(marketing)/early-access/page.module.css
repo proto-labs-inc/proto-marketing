@@ -256,6 +256,7 @@
 }
 
 @media (min-width: 768px) {
+  .page { padding-bottom: calc(5rem + 40svh); }
   .page .content { padding-inline: 1.5rem; }
   .lede { line-height: 1.65; }
 }
