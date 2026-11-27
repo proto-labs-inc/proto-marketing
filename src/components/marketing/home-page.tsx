@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { EarlyAccessContent } from "@/app/(marketing)/early-access/early-access-content";
 import { EarlyAccessContent as EarlyAccessApplicationContent } from "@/app/(marketing)/early-access/application/early-access-content";
 import { PrototypeComponent } from "@/components/marketing/prototype-target";
+import { useHomePagePreviewState } from "@/lib/use-home-page-preview-state";
 
 import { EarlyAccessHeader } from "./early-access-header";
 import { HomePageCopyBlock } from "./home-page-copy-block";
@@ -53,6 +54,7 @@ function isEarlyAccessPath(pathname: string) {
 
 export default function HomePage() {
   const pathname = usePathname();
+  const previewState = useHomePagePreviewState();
   const [activeView, setActiveView] = useState<"home" | "access">(
     isEarlyAccessPath(pathname) ? "access" : "home",
   );
@@ -74,7 +76,8 @@ export default function HomePage() {
   const navigateToHome = useCallback(() => setActiveView("home"), []);
 
   if (pathname !== "/" && pathname !== "/landing" && !isEarlyAccessPath(pathname)) return null;
-  const accessActive = activeView === "access";
+  const accessActive = previewState ? previewState !== "home" : activeView === "access";
+  const forcedFormStatus = previewState === "submitted" ? "success" : undefined;
 
   return (
     <PrototypeComponent className={styles.shell} data-active-view={activeView}>
@@ -118,6 +121,7 @@ export default function HomePage() {
               onNavigate={navigateToHome}
               backClassName={`${styles.back} ${accessActive ? styles.backVisible : ""}`}
               backHidden={!accessActive}
+              forcedStatus={forcedFormStatus}
             />
           )}
         </div>
