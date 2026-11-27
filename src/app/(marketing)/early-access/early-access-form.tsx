@@ -30,9 +30,11 @@ function PriorityNote() {
 export function EarlyAccessForm({
   onSubmitted,
   waitlistCount,
+  forcedStatus,
 }: {
   onSubmitted?: () => void;
   waitlistCount: number | null;
+  forcedStatus?: SubmissionStatus;
 }) {
   const [status, setStatus] = useState<SubmissionStatus>("idle");
   const { state: previewStatus, clear: clearPreview } = useEarlyAccessPreviewState();
@@ -44,7 +46,7 @@ export function EarlyAccessForm({
   const [twitterHandle, setTwitterHandle] = useState("");
   const [excitement, setExcitement] = useState<string | null>(null);
   const excitementFieldRef = useRef<HTMLDivElement>(null);
-  const visibleStatus = previewStatus ?? status;
+  const visibleStatus = forcedStatus ?? previewStatus ?? status;
   const canSubmit = email.trim().length > 0 && emailValid && role.trim().length > 0 && twitterHandle.trim().length > 0 && excitement !== null;
   const showEmailError = previewStatus === "invalid-email" || (emailBlurred && email.trim().length > 0 && !emailValid);
 

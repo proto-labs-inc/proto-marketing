@@ -49,11 +49,13 @@ export function EarlyAccessContent({
   onNavigate,
   backClassName,
   backHidden,
+  forcedStatus,
 }: {
   active: boolean;
   onNavigate: () => void;
   backClassName: string;
   backHidden: boolean;
+  forcedStatus?: "success";
 }) {
   const [countState, setCountState] = useState<
     { status: "loading" | "error" } | { status: "ready"; count: number }
@@ -109,6 +111,7 @@ export function EarlyAccessContent({
                 setCountState({ status: "loading" });
                 setCountRevision((revision) => revision + 1);
               }}
+              forcedStatus={forcedStatus}
             />
           </div>
         </div>
