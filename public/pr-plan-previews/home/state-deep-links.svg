@@ -1,23 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
-  <title id="title">A link straight to the right state</title>
-  <desc id="desc">Wireframe of the early-access form view. The form content, reachable via ?state=form, is highlighted in blue.</desc>
-  <rect width="640" height="360" fill="#ffffff"/>
-
-  <rect x="0" y="0" width="640" height="20" fill="#e5e7eb"/>
-  <rect x="48" y="5" width="90" height="10" rx="2" fill="#d1d5db"/>
-  <rect x="142" y="5" width="90" height="10" rx="2" fill="#2563eb"/>
-
-  <rect x="24" y="40" width="20" height="16" fill="#d1d5db"/>
-
-  <rect x="110" y="56" width="420" height="238" fill="#2563eb" fill-opacity=".1" stroke="#2563eb" stroke-width="2"/>
-
-  <rect x="132" y="76" width="376" height="8" rx="2" fill="#2563eb"/>
-  <rect x="132" y="90" width="300" height="8" rx="2" fill="#2563eb"/>
-
-  <rect x="132" y="130" width="178" height="26" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-  <rect x="340" y="130" width="168" height="26" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-  <rect x="132" y="186" width="178" height="26" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-  <rect x="340" y="186" width="168" height="26" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-
-  <rect x="402" y="246" width="106" height="28" fill="#2563eb"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+<title id="title">Whole-page wireframe: early-access view</title>
+<desc id="desc">Simple whole-page layout in gray. Only the early-access view is highlighted in blue.</desc>
+<rect x="0" y="0" width="960" height="640" fill="#ffffff"/>
+<rect x="20" y="18" width="30" height="30" rx="6" fill="#b8b8b8"/>
+<rect x="898" y="18" width="42" height="30" rx="6" fill="#b8b8b8"/>
+<rect x="296" y="182" width="300" height="10" rx="5" fill="#b8b8b8"/>
+<rect x="296" y="222" width="250" height="10" rx="5" fill="#b8b8b8"/>
+<rect x="296" y="258" width="200" height="24" rx="8" fill="#b8b8b8"/>
+<rect x="266" y="142" width="428" height="338" rx="10" fill="#2563eb" opacity="0.35"/>
 </svg>

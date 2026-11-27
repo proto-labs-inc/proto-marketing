@@ -1,22 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
-  <title id="title">One page, a theme in every link</title>
-  <desc id="desc">Wireframe of the home page. The theme-picker pill, reachable via ?theme=light, is highlighted in blue.</desc>
-  <rect width="640" height="360" fill="#ffffff"/>
-
-  <rect x="0" y="0" width="640" height="20" fill="#e5e7eb"/>
-  <rect x="48" y="5" width="90" height="10" rx="2" fill="#d1d5db"/>
-  <rect x="142" y="5" width="90" height="10" rx="2" fill="#2563eb"/>
-
-  <rect x="220" y="90" width="200" height="16" rx="2" fill="#d1d5db"/>
-  <rect x="190" y="116" width="260" height="8" rx="2" fill="#e5e7eb"/>
-  <rect x="210" y="130" width="220" height="8" rx="2" fill="#e5e7eb"/>
-  <rect x="270" y="150" width="100" height="22" rx="4" fill="#e5e7eb"/>
-
-  <g>
-    <rect x="466" y="42" width="134" height="36" fill="#2563eb" fill-opacity=".1" stroke="#2563eb" stroke-width="2"/>
-    <rect x="470" y="46" width="28" height="28" fill="#2563eb"/>
-    <rect x="501" y="46" width="28" height="28" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-    <rect x="532" y="46" width="28" height="28" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-    <rect x="563" y="46" width="28" height="28" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+<title id="title">Whole-page wireframe: theme picker</title>
+<desc id="desc">Simple whole-page layout in gray. Only the theme picker is highlighted in blue.</desc>
+<rect x="0" y="0" width="960" height="640" fill="#ffffff"/>
+<rect x="417" y="80" width="126" height="26" rx="6" fill="#b8b8b8"/>
+<rect x="282" y="194" width="396" height="9" rx="4" fill="#b8b8b8"/>
+<rect x="263" y="214" width="300" height="9" rx="4" fill="#b8b8b8"/>
+<rect x="50" y="233" width="80" height="112" rx="10" fill="#eeeeee"/>
+<rect x="793" y="182" width="91" height="105" rx="10" fill="#eeeeee"/>
+<circle cx="919" cy="33" r="8" fill="#b8b8b8"/>
+<rect x="898" y="18" width="42" height="30" rx="6" fill="#2563eb" opacity="0.35"/>
 </svg>
