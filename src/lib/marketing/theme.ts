@@ -36,6 +36,15 @@ export function isThemePreference(value: unknown): value is ThemePreference {
   );
 }
 
+/** Home preview states override storage without changing the saved preference. */
+export function readThemePreview(): ThemePreference | null {
+  if (typeof window === "undefined") return null;
+  if (window.location.pathname !== "/" && window.location.pathname !== "/landing") return null;
+  const state = new URLSearchParams(window.location.search).get("state");
+  if (state === null) return null;
+  return isThemePreference(state) ? state : null;
+}
+
 export function toColorScheme(resolved: ResolvedTheme): "light" | "dark" {
   return resolved === "light" ||
     resolved === "p5js" ||
@@ -83,4 +92,4 @@ export function applyResolvedTheme(root: HTMLElement, resolved: ResolvedTheme) {
  * a stored theme shows from the first frame instead of after hydration. The
  * root is the script's parent element.
  */
-export const THEME_BOOTSTRAP_SCRIPT = `(function(){var e=document.currentScript.parentElement;try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var s=localStorage.getItem(k);var p=s==="light"||s==="dark"||s==="matrix"||s==="p5js"||s==="macintosh"||s==="system"?s:${JSON.stringify(DEFAULT_THEME_PREFERENCE)};var r=p==="system"?(window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"):p;e.dataset.theme=r;e.style.colorScheme=r==="light"||r==="p5js"||r==="macintosh"?"light":"dark"}catch(err){e.dataset.theme="dark";e.style.colorScheme="dark"}})()`;
+export const THEME_BOOTSTRAP_SCRIPT = `(function(){var e=document.currentScript.parentElement;var q=(location.pathname==="/"||location.pathname==="/landing")?new URLSearchParams(location.search).get("state"):null;var p=${JSON.stringify(DEFAULT_THEME_PREFERENCE)};if(${JSON.stringify(THEME_PREFERENCES)}.includes(q)){p=q}else{try{var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});if(${JSON.stringify(THEME_PREFERENCES)}.includes(s))p=s}catch(err){}}var r=p==="system"?(window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"):p;e.dataset.theme=r;e.style.colorScheme=r==="light"||r==="p5js"||r==="macintosh"?"light":"dark"})()`;

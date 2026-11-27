@@ -18,6 +18,7 @@ import {
   DEFAULT_THEME_PREFERENCE,
   persistThemePreference,
   readStoredThemePreference,
+  readThemePreview,
   resolveTheme,
   THEME_BOOTSTRAP_SCRIPT,
   THEME_STORAGE_KEY,
@@ -61,10 +62,15 @@ export function MarketingRoot({
   }, []);
 
   useEffect(() => {
-    const stored = readStoredThemePreference();
-    setPreferenceState(stored);
-    apply(stored);
+    const syncFromLocation = () => {
+      const next = readThemePreview() ?? readStoredThemePreference();
+      setPreferenceState(next);
+      apply(next);
+    };
+    syncFromLocation();
     setReady(true);
+    window.addEventListener("popstate", syncFromLocation);
+    return () => window.removeEventListener("popstate", syncFromLocation);
   }, [apply]);
 
   useEffect(() => {
@@ -83,6 +89,13 @@ export function MarketingRoot({
 
   const setPreference = useCallback(
     (next: ThemePreference) => {
+      if (readThemePreview() !== null) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("state", next);
+        window.history.replaceState(window.history.state, "", url);
+        window.dispatchEvent(new PopStateEvent("popstate", { state: window.history.state }));
+        return;
+      }
       setPreferenceState(next);
       persistThemePreference(next);
       apply(next);
@@ -102,7 +115,7 @@ export function MarketingRoot({
   useEffect(() => {
     const onStorage = (event: StorageEvent) => {
       if (event.key !== THEME_STORAGE_KEY) return;
-      const next = readStoredThemePreference();
+      const next = readThemePreview() ?? readStoredThemePreference();
       setPreferenceState(next);
       apply(next);
     };
