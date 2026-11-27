@@ -222,13 +222,8 @@
 
 @media (max-width: 767px) {
   .page {
-    --early-access-header-inset: 0.75rem;
-    padding-top: calc(max(var(--early-access-header-inset), env(safe-area-inset-top)) + var(--marketing-header-control-height) + 1rem);
-    padding-bottom: max(3rem, env(safe-area-inset-bottom));
-  }
-
-  :global(.marketing[data-theme="macintosh"]) .page {
-    --early-access-header-inset: 1.75rem;
+    padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 3rem;
   }
 
   .content {
