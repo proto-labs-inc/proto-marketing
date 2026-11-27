@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
 
-import adrianMatoPortrait from "./funded-by-assets/adrian-mato.jpg";
-import ariWeinsteinPortrait from "./funded-by-assets/ari-weinstein.jpg";
+import adrianMatoPortrait from "./funded-by-assets/adrian-mato.png";
+import ariWeinsteinPortrait from "./funded-by-assets/ari-weinstein.png";
 import davidHuangPortrait from "./funded-by-assets/david-huang.png";
-import johnPhamousPortrait from "./funded-by-assets/john-phamous.jpg";
-import soleioPortrait from "./funded-by-assets/soleio.jpg";
-import stephenHaneyPortrait from "./funded-by-assets/stephen-haney.jpg";
+import johnPhamousPortrait from "./funded-by-assets/john-phamous.png";
+import soleioPortrait from "./funded-by-assets/soleio.png";
+import stephenHaneyPortrait from "./funded-by-assets/stephen-haney.png";
 
 export type Backer = {
   name: string;
