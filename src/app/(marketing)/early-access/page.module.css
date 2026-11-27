@@ -44,7 +44,9 @@
 .layoutBody:has(.successRow) .lede { display: none; }
 
 .formPanel { margin-top: 2rem; pointer-events: auto; }
-.form { display: grid; column-gap: 1.2rem; row-gap: 1.6rem; }
+.form { display: grid; column-gap: 1.2rem; row-gap: 1.6rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.form > div:first-child,
+.form > div:last-child { grid-column: 1 / -1; }
 .field { position: relative; display: grid; gap: 0.45rem; }
 .field:has([aria-expanded="true"]) { z-index: 1; }
 .field > [data-base-ui-portal] {
@@ -242,6 +244,7 @@
   .layoutBody:has(.successRow) { width: 100%; }
   .priorityNote { width: 100%; }
   .formPanel { margin-top: 1.6rem; }
+  .form { grid-template-columns: minmax(0, 1fr); }
   .lede,
   .field label,
   .fieldError,
@@ -254,7 +257,6 @@
 
 @media (min-width: 768px) {
   .page .content { padding-inline: 1.5rem; }
-  .form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lede { line-height: 1.65; }
 }
 
