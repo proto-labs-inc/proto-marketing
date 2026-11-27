@@ -1,0 +1,267 @@
+.root {
+  position: relative;
+  width: min(100%, 420px);
+  min-height: 300px;
+  margin: 24px auto 0;
+  overflow: hidden;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--background) 88%, #fff34a);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.track {
+  position: absolute;
+  inset: 40px 12%;
+  border: 1px dashed color-mix(in srgb, var(--foreground) 28%, transparent);
+  border-radius: 50%;
+  transform: rotate(-7deg);
+}
+
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px 12px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--foreground);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--foreground);
+  transform: translate(-50%, -50%);
+}
+
+.core > span:last-child {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.core small {
+  display: block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.ycMark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  background: #ff5a1f;
+  border-radius: 8px;
+}
+
+.portrait {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  padding: 0;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.person1 {
+  top: 14px;
+  left: 30%;
+}
+
+.person2 {
+  top: 46px;
+  right: 18%;
+  --profile-left: auto;
+  --profile-right: 0px;
+}
+
+.person3 {
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+  --profile-left: auto;
+  --profile-right: 0px;
+}
+
+.person4 {
+  right: 26%;
+  bottom: 14px;
+  --profile-left: auto;
+  --profile-right: 0px;
+}
+
+.person5 {
+  bottom: 28px;
+  left: 18%;
+}
+
+.person6 {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.image {
+  display: block;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background: var(--background);
+  border: 3px solid var(--background);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px var(--foreground),
+    4px 5px 0 color-mix(in srgb, var(--foreground) 18%, transparent);
+  transition:
+    transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.18s;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile {
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 12px);
+  left: var(--profile-left, 50%);
+  right: var(--profile-right, auto);
+  display: grid;
+  width: 200px;
+  padding: 12px 14px;
+  text-align: left;
+  background: var(--background);
+  border: 1px solid var(--foreground);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--foreground);
+  opacity: 0;
+  pointer-events: none;
+  transform: var(--profile-hidden-transform, translate(-50%, 8px) scale(0.96));
+  transform-origin: bottom;
+  transition:
+    opacity 0.15s,
+    transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.person2 .profile,
+.person3 .profile,
+.person4 .profile {
+  --profile-hidden-transform: translate(0, 8px) scale(0.96);
+  --profile-visible-transform: translate(0, 0) scale(1);
+}
+
+.profile::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  content: "";
+  background: var(--background);
+  border-right: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  transform: translate(-50%, -5px) rotate(45deg);
+}
+
+.profile strong {
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.profile small {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 14px;
+  color: var(--muted-foreground);
+}
+
+.profile > span:last-child {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  line-height: 15px;
+  color: var(--muted-foreground);
+}
+
+.portrait:hover,
+.portrait:focus-visible {
+  z-index: 20;
+  outline: none;
+}
+
+.portrait:hover .image,
+.portrait:focus-visible .image {
+  box-shadow:
+    0 0 0 2px var(--foreground),
+    7px 8px 0 color-mix(in srgb, var(--foreground) 22%, transparent);
+  transform: translateY(-7px) rotate(-3deg) scale(1.08);
+}
+
+.portrait:hover .profile,
+.portrait:focus-visible .profile {
+  opacity: 1;
+  transform: var(--profile-visible-transform, translate(-50%, 0) scale(1));
+}
+
+.instruction {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 639px) {
+  .root {
+    min-height: 340px;
+    border-radius: 28px;
+  }
+
+  .track {
+    inset: 48px 10%;
+  }
+
+  .image {
+    width: 52px;
+    height: 52px;
+  }
+
+  .profile {
+    width: 170px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .profile {
+    transition: none;
+  }
+}

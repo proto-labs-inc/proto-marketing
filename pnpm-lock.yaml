@@ -48,6 +48,9 @@ importers:
         specifier: ^4.6.5
         version: 4.6.7
     devDependencies:
+      '@proto-labs-inc/islands':
+        specifier: file:../proto-cloud/packages/islands
+        version: file:../proto-cloud/packages/islands(react@19.3.0)
       '@tailwindcss/postcss':
         specifier: ^4.3.3
         version: 4.3.5
@@ -516,6 +519,18 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@proto-labs-inc/islands@file:../proto-cloud/packages/islands':
+    resolution: {directory: ../proto-cloud/packages/islands, type: directory}
+    hasBin: true
+    peerDependencies:
+      react: '>=18'
+      svelte: '>=4'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      svelte:
+        optional: true
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -1177,6 +1192,9 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  magic-string@0.30.21:
+    resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
   magic-string@1.4.5:
     resolution: {integrity: sha512-oLLC2+YvQUfAa+vxoufE/yc1icb87M9iXIRqAoR/2EhE/8cb3SF/+Gi0c2By1B+5Vz2e2vQtUvHiu1+63Znh+w==}
@@ -2055,6 +2073,13 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.3
 
+  '@proto-labs-inc/islands@file:../proto-cloud/packages/islands(react@19.3.0)':
+    dependencies:
+      '@babel/parser': 7.29.15
+      magic-string: 0.30.21
+    optionalDependencies:
+      react: 19.3.0
+
   '@sec-ant/readable-stream@0.4.1': {}
 
   '@shadcn/registry@0.2.2':
@@ -2571,6 +2596,10 @@ snapshots:
       react: 19.3.0
     optionalDependencies:
       '@types/react': 19.3.3
+
+  magic-string@0.30.21:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   magic-string@1.4.5:
     dependencies:

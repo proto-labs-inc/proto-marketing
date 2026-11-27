@@ -1,0 +1,42 @@
+/* Scoped to this island so every form layout uses the same control treatment. */
+.controls.controls.controls :is(input:not([type="hidden"]), [data-slot="select-trigger"]) {
+  width: 100%;
+  min-height: 2.625rem;
+  height: 2.625rem;
+  padding: 0.5rem 0.8rem;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+  border: 1px solid color-mix(in srgb, var(--foreground) 55%, var(--background));
+  border-radius: 0.25rem;
+  background: var(--background);
+  box-shadow: 2px 2px 0 color-mix(in srgb, var(--foreground) 13%, transparent);
+}
+.controls.controls.controls :is(input, [data-slot="select-trigger"]):hover { border-color: var(--foreground);
+  box-shadow: 2px 2px 0 color-mix(in srgb, var(--foreground) 28%, transparent); }
+.controls.controls.controls :is(input:focus-visible, [data-slot="select-trigger"]:focus-visible, [data-slot="select-trigger"][aria-expanded="true"]) { border-color: var(--early-access-action-color, var(--foreground));
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--early-access-action-color, var(--foreground)) 40%, transparent);
+  outline: 2px solid var(--early-access-action-color, var(--foreground));
+  outline-offset: 2px; }
+.controls.controls.controls input::placeholder,
+.controls.controls.controls [data-slot="select-trigger"][data-placeholder] { color: var(--muted-foreground); opacity: 1; }
+.controls.controls.controls :is(input, [data-slot="select-trigger"])[aria-invalid="true"] {
+  border-color: var(--destructive, #dc2626);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--destructive, #dc2626) 20%, transparent);
+}
+.controls.controls.controls [data-slot="select-content"] {
+  border: 1px solid var(--input);
+  border-radius: 0.5rem;
+  background: var(--background);
+  color: var(--foreground);
+}
+.controls.controls.controls [data-slot="select-item"]:is([data-highlighted], :focus-visible) {
+  background: color-mix(in srgb, var(--early-access-action-color, var(--foreground)) 13%, var(--background));
+  color: var(--foreground);
+}
+:global(.marketing[data-theme="macintosh"]) .controls.controls.controls :is(input, [data-slot="select-trigger"], [data-slot="select-content"]) { border-radius: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .controls.controls.controls :is(input, [data-slot="select-trigger"]) { transition: none; }
+}

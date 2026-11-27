@@ -1,0 +1,10 @@
+{
+  "title": "Funded by",
+  "icon": "layers",
+  "target": {
+    "file": "src/components/marketing/home-page.tsx",
+    "in": "HomePage",
+    "element": "StableFundedBySection",
+    "nth": 0
+  }
+}

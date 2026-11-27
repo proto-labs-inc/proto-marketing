@@ -1,0 +1,14 @@
+.layout.layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.layout.layout input,
+.layout.layout [data-slot="select-trigger"] {
+  background: light-dark(var(--color-neutral-50), color-mix(in srgb, var(--muted) 40%, var(--background)));
+  border-color: var(--input);
+}
+
+.layout.layout input:focus,
+.layout.layout [data-slot="select-trigger"]:is(:hover, :focus) {
+  border-color: color-mix(in srgb, var(--foreground) 20%, var(--input));
+}

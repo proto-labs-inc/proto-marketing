@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "target": {
+    "file": "src/app/(marketing)/early-access/early-access-content.tsx",
+    "in": "EarlyAccessContent",
+    "element": "EarlyAccessForm",
+    "nth": 0
+  },
+  "defaultState": "idle",
+  "states": [
+    {
+      "id": "idle",
+      "title": "Idle",
+      "preview": "/early-access-state-previews/idle-rounded-blocks-20261115.png"
+    },
+    {
+      "id": "invalid-email",
+      "title": "Email error",
+      "parent": "idle",
+      "preview": "/early-access-state-previews/invalid-email-rounded-blocks-20261115.png"
+    },
+    {
+      "id": "submitting",
+      "title": "Submitting",
+      "parent": "idle",
+      "preview": "/early-access-state-previews/submitting-rounded-blocks-20261115.png"
+    },
+    {
+      "id": "error",
+      "title": "Error",
+      "parent": "idle",
+      "preview": "/early-access-state-previews/error-rounded-blocks-20261115.png"
+    },
+    {
+      "id": "success",
+      "title": "Success",
+      "parent": "submitting",
+      "preview": "/early-access-state-previews/success-rounded-blocks-20261115.png"
+    }
+  ]
+}

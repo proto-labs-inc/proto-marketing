@@ -58,7 +58,16 @@ export default function HomePage() {
   );
 
   useEffect(() => {
-    setActiveView(isEarlyAccessPath(pathname) ? "access" : "home");
+    const sync = () => {
+      // Authored Proto states must work in the running preview before PR code is merged.
+      const state = process.env.NODE_ENV === "development" ? new URLSearchParams(window.location.search).get("state") : null;
+      if (state === "home") setActiveView("home");
+      else if (state === "form" || state === "submitted") setActiveView("access");
+      else setActiveView(isEarlyAccessPath(pathname) ? "access" : "home");
+    };
+    sync();
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
   }, [pathname]);
 
   const navigateToAccess = useCallback(() => setActiveView("access"), []);

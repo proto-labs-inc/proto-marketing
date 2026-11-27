@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import {
   applyResolvedTheme,
+  isThemePreference,
   DEFAULT_THEME_PREFERENCE,
   persistThemePreference,
   readStoredThemePreference,
@@ -64,6 +65,20 @@ export function MarketingRoot({
     setPreferenceState(stored);
     apply(stored);
     setReady(true);
+  }, [apply]);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "development") return;
+    const sync = () => {
+      const requested = new URLSearchParams(window.location.search).get("theme");
+      let next = readStoredThemePreference();
+      if (isThemePreference(requested)) next = requested;
+      setPreferenceState(next);
+      apply(next);
+    };
+    sync();
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
   }, [apply]);
 
   const setPreference = useCallback(

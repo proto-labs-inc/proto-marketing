@@ -31,7 +31,9 @@ export function useEarlyAccessPreviewState(): { state: EarlyAccessState | null; 
     if (!frameOrigin) return;
     const sync = () => {
       const requested = new URLSearchParams(window.location.search).get("state");
-      setState(isEarlyAccessState(requested) ? requested : null);
+      if (process.env.NODE_ENV === "development" && requested === "submitted") setState("success");
+      else if (process.env.NODE_ENV === "development" && requested === "form") setState("idle");
+      else setState(isEarlyAccessState(requested) ? requested : null);
     };
     const onMessage = (event: MessageEvent) => {
       if (event.source !== window.parent || event.origin !== frameOrigin || event.data?.type !== "proto:early-access:set-state") return;

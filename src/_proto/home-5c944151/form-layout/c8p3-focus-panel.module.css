@@ -1,0 +1,46 @@
+.layout.layout {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.layout.layout input,
+.layout.layout [data-slot="select-trigger"] {
+  background: light-dark(var(--color-neutral-50), color-mix(in srgb, var(--muted) 40%, var(--background)));
+  border-color: var(--input);
+}
+
+.layout.layout input:focus,
+.layout.layout [data-slot="select-trigger"]:is(:hover, :focus) {
+  border-color: color-mix(in srgb, var(--foreground) 20%, var(--input));
+}
+
+.layout.layout > div:first-child,
+.layout.layout > div:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 639px) {
+  .layout.layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Keep the viewport-centered placement on desktop only. */
+@media (min-width: 768px) {
+  :global(main):has(.layout) {
+    padding-bottom: calc(5rem + 40svh);
+  }
+}
+
+/* Mobile content follows normal flow below the fixed navigation. */
+@media (max-width: 767px) {
+  :global(main):has(.layout) {
+    padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 3rem;
+  }
+
+  :global(main) :global([data-access-backdrop]):has(.layout) {
+    position: relative;
+    top: auto;
+    translate: none;
+  }
+}

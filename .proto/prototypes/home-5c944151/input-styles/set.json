@@ -1,0 +1,10 @@
+{
+  "title": "Input styles",
+  "icon": "type",
+  "target": {
+    "file": "src/app/(marketing)/early-access/early-access-content.tsx",
+    "in": "EarlyAccessContent",
+    "element": "EarlyAccessForm",
+    "nth": 0
+  }
+}

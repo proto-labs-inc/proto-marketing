@@ -17,6 +17,13 @@ body:has(.marketing [data-active-view]):not(:has(.unified-desktop)) {
   overflow-x: clip;
 }
 
+/* Snapshot-capture controls for the shapes canvas are an editing aid, not
+ * site UI — keep them off everywhere.
+ */
+[data-proto-shape-controls] {
+  display: none;
+}
+
 /* Typed color tokens so mode changes interpolate instead of snapping. */
 @property --background {
   syntax: "<color>";

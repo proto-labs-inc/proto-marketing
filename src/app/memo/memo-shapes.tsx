@@ -49,8 +49,16 @@ function MemoEmailGate({ onUnlock, demoState }: { onUnlock: () => void; demoStat
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (!demoState) return;
+    setEmail(demoState === "email-entry" ? "" : "reader@example.com");
+    setSubmitting(false);
+    setError("");
+  }, [demoState]);
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (demoState) return;
     const trimmedEmail = email.trim();
     if (submitting) return;
     if (!VALID_EMAIL.test(trimmedEmail)) {
@@ -253,9 +261,17 @@ export function MemoShapes({ frameOrigin }: { frameOrigin: string | null }) {
   const initialView = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
+    const syncPreviewState = () => {
+      const value = new URLSearchParams(window.location.search).get("state");
+      setDemoState(isMemoDemoState(value) ? value : value === null ? null : "email-entry");
+    };
+    syncPreviewState();
+    window.addEventListener("popstate", syncPreviewState);
+    return () => window.removeEventListener("popstate", syncPreviewState);
+  }, []);
+
+  useEffect(() => {
     if (window.parent === window) return;
-    const initialState = new URLSearchParams(window.location.search).get("state");
-    if (isMemoDemoState(initialState)) setDemoState(initialState);
     const trustedOrigin = frameOrigin ? new URL(frameOrigin).origin : null;
     const onMessage = (event: MessageEvent) => {
       if (event.source !== window.parent) return;
@@ -380,6 +396,11 @@ export function MemoShapes({ frameOrigin }: { frameOrigin: string | null }) {
   }, [focusRequest, demoState, frameOrigin]);
 
   useEffect(() => {
+    // Explicit previews never depend on saved access or record a real view.
+    if (new URLSearchParams(window.location.search).has("state")) {
+      setUnlocked(false);
+      return;
+    }
     let active = true;
     try {
       const savedEmail = window.localStorage.getItem(MEMO_EMAIL_STORAGE_KEY);

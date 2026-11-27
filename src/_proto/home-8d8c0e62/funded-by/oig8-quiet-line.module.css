@@ -1,0 +1,65 @@
+.root {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+  margin-inline: auto;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  background: #ff5a1f;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
+
+.copy {
+  min-width: 0;
+  padding: 8px 0 8px 16px;
+}
+
+.copy h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+}
+
+.copy p {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.copy a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, currentColor 28%, transparent);
+  text-underline-offset: 2px;
+}
+
+.copy a:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 639px) {
+  .root {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .copy {
+    padding-left: 12px;
+  }
+}

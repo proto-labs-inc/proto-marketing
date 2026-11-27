@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "target": {
+    "file": "src/app/memo/page.tsx",
+    "in": "MemoPage",
+    "element": "MemoShapes",
+    "nth": 0
+  },
+  "defaultState": "email-entry",
+  "states": [
+    { "id": "email-entry", "title": "Email entry", "preview": "/memo-state-previews/email-entry.png" },
+    { "id": "email-loading", "title": "Loading", "parent": "email-entry", "preview": "/memo-state-previews/email-loading.png" },
+    { "id": "email-error", "title": "Error", "parent": "email-entry", "preview": "/memo-state-previews/email-error.png" },
+    { "id": "unlocked-memo", "title": "Unlocked memo", "parent": "email-entry", "preview": "/memo-state-previews/unlocked-memo.png" }
+  ]
+}

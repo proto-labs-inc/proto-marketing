@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "target": {
+    "file": "src/app/(marketing)/layout.tsx",
+    "in": "MarketingLayout",
+    "element": "HomePage",
+    "nth": 0
+  },
+  "defaultState": "home",
+  "states": [
+    { "id": "home", "title": "Home page" },
+    { "id": "form", "title": "Form", "parent": "home" },
+    { "id": "submitted", "title": "Submitted", "parent": "form" }
+  ]
+}

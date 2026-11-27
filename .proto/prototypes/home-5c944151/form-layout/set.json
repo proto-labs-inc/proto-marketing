@@ -1,0 +1,10 @@
+{
+  "title": "Early access form layouts",
+  "icon": "layout-grid",
+  "target": {
+    "file": "src/app/(marketing)/early-access/early-access-form.tsx",
+    "in": "EarlyAccessForm",
+    "element": "form",
+    "nth": 0
+  }
+}

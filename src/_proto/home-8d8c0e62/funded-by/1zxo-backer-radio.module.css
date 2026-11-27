@@ -1,0 +1,172 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  overflow: hidden;
+  color: #101010;
+  background: #f462a0;
+  border: 1px solid var(--foreground);
+  border-radius: 22px;
+  box-shadow: 7px 7px #101010;
+}
+
+.display {
+  min-height: 216px;
+  padding: 18px 22px;
+  border-right: 1px solid;
+}
+
+.frequency,
+.nowPlaying,
+.controlLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.frequency {
+  width: fit-content;
+  padding: 4px 7px;
+  border: 1px solid;
+  border-radius: 999px;
+}
+
+.nowPlaying {
+  margin-top: 20px;
+  opacity: 0.56;
+}
+
+.display h2 {
+  min-height: 42px;
+  margin: 4px 0 0;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.display h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.display p {
+  margin: 6px 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  gap: 4px;
+}
+
+.wave span {
+  width: 3px;
+  height: 30%;
+  background: currentColor;
+  border-radius: 99px;
+  animation: radio-wave 0.85s ease-in-out infinite alternate;
+}
+
+.wave span:nth-child(3n) {
+  height: 90%;
+  animation-delay: -300ms;
+}
+
+.wave span:nth-child(4n) {
+  height: 55%;
+  animation-delay: -550ms;
+}
+
+.wave span:nth-child(5n) {
+  height: 75%;
+  animation-delay: -120ms;
+}
+
+@keyframes radio-wave {
+  to {
+    transform: scaleY(1.65);
+  }
+}
+
+.controls {
+  padding: 18px 22px;
+  background: #fff34a;
+}
+
+.dial {
+  display: grid;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.station {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.14s,
+    transform 0.14s;
+}
+
+.station:hover {
+  transform: translate(4px);
+}
+
+.station[aria-current="true"] {
+  color: #fff34a;
+  background: #101010;
+}
+
+.station > span {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.station strong {
+  font-size: 11px;
+}
+
+@media (max-width: 639px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+
+  .display,
+  .controls {
+    padding: 20px;
+  }
+
+  .display {
+    min-height: 190px;
+    border-right: 0;
+    border-bottom: 1px solid;
+  }
+
+  .nowPlaying {
+    margin-top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave span {
+    animation: none;
+  }
+}

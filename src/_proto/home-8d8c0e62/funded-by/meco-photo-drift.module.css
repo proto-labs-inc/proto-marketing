@@ -1,0 +1,286 @@
+.root {
+  position: relative;
+  width: min(100%, 860px);
+  height: 260px;
+  margin: 24px auto 0;
+  color: var(--foreground);
+}
+
+.person {
+  --float-x: 7px;
+  --float-y: -9px;
+  --tilt: 0deg;
+  --tilt-end: 1deg;
+  position: absolute;
+  z-index: 2;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  animation: photo-float 7.5s ease-in-out infinite;
+}
+
+.person1 {
+  top: 78px;
+  left: 0%;
+  --tilt: -4deg;
+  --tilt-end: -1deg;
+  animation-duration: 8.2s;
+}
+
+.person2 {
+  top: 14px;
+  left: 16%;
+  --float-x: -5px;
+  --float-y: 8px;
+  --tilt: 2.5deg;
+  --tilt-end: 0deg;
+  animation-duration: 9.4s;
+  animation-delay: -3.6s;
+}
+
+.person3 {
+  top: 98px;
+  left: 33%;
+  --float-x: 4px;
+  --float-y: -7px;
+  --tilt: -1deg;
+  --tilt-end: 1.5deg;
+  animation-duration: 8.8s;
+  animation-delay: -1.8s;
+}
+
+.person4 {
+  top: 10px;
+  left: 51%;
+  --float-x: -7px;
+  --float-y: -8px;
+  --tilt: 4deg;
+  --tilt-end: 1deg;
+  animation-duration: 10.1s;
+  animation-delay: -5.1s;
+}
+
+.person5 {
+  top: 92px;
+  left: 69%;
+  --float-x: 6px;
+  --float-y: 7px;
+  --tilt: -3deg;
+  --tilt-end: 0.5deg;
+  animation-duration: 9.7s;
+  animation-delay: -2.8s;
+}
+
+.person6 {
+  top: 20px;
+  right: 0%;
+  --float-x: -6px;
+  --float-y: 6px;
+  --tilt: 2deg;
+  --tilt-end: -1deg;
+  animation-duration: 8.6s;
+  animation-delay: -6.4s;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1;
+  width: 88px;
+  height: 88px;
+  border: 3px solid var(--background);
+  border-radius: 999px;
+  background: var(--background);
+  box-shadow:
+    0 14px 30px rgb(18 18 18 / 0.15),
+    0 3px 8px rgb(18 18 18 / 0.1);
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 220ms ease;
+}
+
+.person2 .frame,
+.person4 .frame {
+  width: 78px;
+  height: 78px;
+}
+
+.person3 .frame {
+  width: 100px;
+  height: 100px;
+}
+
+.person5 .frame {
+  width: 96px;
+  height: 96px;
+}
+
+.person6 .frame {
+  width: 86px;
+  height: 86px;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.profile {
+  position: absolute;
+  z-index: 10;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  display: grid;
+  width: 212px;
+  padding: 12px 14px;
+  border: 1px solid var(--foreground);
+  border-radius: 10px;
+  background: var(--background);
+  box-shadow: 5px 5px 0 var(--foreground);
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  transform: translate(-50%, 8px) scale(0.96);
+  transform-origin: bottom;
+  transition:
+    opacity 150ms ease,
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.profile::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  background: var(--background);
+  content: "";
+  transform: translate(-50%, -5px) rotate(45deg);
+}
+
+.profile strong {
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.profile small {
+  color: var(--muted-foreground);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.profile > span {
+  margin-top: 6px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+  line-height: 15px;
+}
+
+.person:hover,
+.person:focus-visible {
+  z-index: 20;
+  outline: none;
+  animation-play-state: paused;
+}
+
+.person:hover .frame,
+.person:focus-visible .frame {
+  box-shadow:
+    0 20px 42px rgb(18 18 18 / 0.2),
+    0 5px 12px rgb(18 18 18 / 0.12);
+  transform: translateY(-7px) scale(1.05);
+}
+
+.person:hover .profile,
+.person:focus-visible .profile {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+@keyframes photo-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--tilt));
+  }
+
+  50% {
+    transform: translate3d(var(--float-x), var(--float-y), 0)
+      rotate(var(--tilt-end));
+  }
+}
+
+@media (max-width: 639px) {
+  .root {
+    width: min(92%, 360px);
+    height: 300px;
+  }
+
+  .person1 {
+    left: 0%;
+    top: 96px;
+  }
+
+  .person2 {
+    left: 17%;
+    top: 22px;
+  }
+
+  .person3 {
+    left: 34%;
+    top: 120px;
+  }
+
+  .person4 {
+    left: 51%;
+    top: 14px;
+  }
+
+  .person5 {
+    left: 68%;
+    top: 108px;
+  }
+
+  .person6 {
+    right: 0%;
+    top: 30px;
+  }
+
+  .frame,
+  .person2 .frame,
+  .person4 .frame,
+  .person5 .frame,
+  .person6 .frame {
+    width: 66px;
+    height: 66px;
+  }
+
+  .person3 .frame {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person {
+    animation: none;
+  }
+
+  .frame,
+  .profile {
+    transition: none;
+  }
+}
