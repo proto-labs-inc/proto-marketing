@@ -25,7 +25,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@proto-labs-inc/islands": "file:../proto-cloud/packages/islands",
+    "@proto-labs-inc/islands": "0.0.8",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22.0.0",
     "@types/react": "^19.2.14",

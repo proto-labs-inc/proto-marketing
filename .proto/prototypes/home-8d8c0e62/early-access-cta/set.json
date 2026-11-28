@@ -1,0 +1,10 @@
+{
+  "title": "Get early access button",
+  "icon": "sparkles",
+  "target": {
+    "file": "src/components/marketing/home-page-copy-block.tsx",
+    "in": "HomePageCopyBlock",
+    "element": "EarlyAccessHeader",
+    "nth": 1
+  }
+}

@@ -4,5 +4,6 @@ out/
 .env*
 !.env.example
 *.tsbuildinfo
-.vercel/
+.vercel/*
+!.vercel/project.json
 .DS_Store

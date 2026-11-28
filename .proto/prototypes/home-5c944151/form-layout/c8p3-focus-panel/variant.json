@@ -1,5 +1,10 @@
 {
   "title": "Email first",
   "createdAt": "2026-11-26T20:00:02.000Z",
-  "entry": "../../../../../src/_proto/home-5c944151/form-layout/c8p3-focus-panel.tsx"
+  "entry": "../../../../../src/_proto/home-5c944151/form-layout/c8p3-focus-panel.tsx",
+  "view": {
+    "stateSearch": "state=idle",
+    "viewPath": "/early-access?state=idle"
+  },
+  "preview": "/proto-previews/home-5c944151/form-layout/c8p3-focus-panel-wireframe.png"
 }
